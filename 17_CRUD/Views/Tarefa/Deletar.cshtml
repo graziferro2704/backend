@@ -1,0 +1,13 @@
+@model Tarefa
+
+<h1>Deletar Tarefa</h1>
+
+<p>Tem certeza de que deseja deletar a seguinte tarefa?</p>
+<p><strong>Descrição:</strong> @Model.Descricao</p>
+<p><strong>Concluída:</strong> @(Model.Concluida ? "Sim" : "Não")</p>
+
+<form asp-action="DeletarConfirmado" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Confirmar Deleção</button>
+</form>
+<a asp-action="Index">Cancelar</a>

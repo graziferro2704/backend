@@ -1,0 +1,20 @@
+@model Tarefa
+
+<h1>Adicionar Nova Tarefa</h1>
+
+<form asp-action="Adicionar">
+    <div class="form-group">
+        <label for="Descricao">Descrição</label>
+        <input type="text" class="form-control" id="Descricao" name="Descricao" placeholder="Digite a descrição"
+            required>
+    </div>
+    <div class="form-group">
+        <label for="Concluida">Concluída</label>
+        <select class="form-control" id="Concluida" name="Concluida">
+            <option value="true">Sim</option>
+            <option value="false">Não</option>
+        </select>
+    </div>
+    <button type="submit" >Adicionar</button>
+</form>
+<a asp-action="Index">Voltar para a Lista</a>
