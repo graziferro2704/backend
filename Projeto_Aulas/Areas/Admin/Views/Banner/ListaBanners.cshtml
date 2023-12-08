@@ -1,0 +1,76 @@
+@model IEnumerable<App.Models.Banner>
+
+<p>
+    <a asp-action="CriarBanner" class="btn btn-dark">Novo Banner</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> @Html.DisplayNameFor(model => model.Imagem) </th>
+            <th> @Html.DisplayNameFor(model => model.Titulo) </th>
+            <th> @Html.DisplayNameFor(model => model.Subtitulo) </th>
+            <th> @Html.DisplayNameFor(model => model.Link) </th>
+            <th> @Html.DisplayNameFor(model => model.Exibir) </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><img src="~/fotos/@item.Imagem" alt="" style="width:100px"></td>
+                <td> @Html.DisplayFor(modelItem => item.Titulo)</td>
+                <td> @Html.DisplayFor(modelItem => item.Subtitulo) </td>
+                <td> @Html.DisplayFor(modelItem => item.Link)</td>
+                <td> @Html.DisplayFor(modelItem => item.Exibir) </td>
+                <td>
+                    <a class="btn btn-dark" asp-action="EditarBanner" asp-route-id="@item.BannerId">Editar</a> |
+                    <a class="btn btn-danger" asp-action="DeletarBanner" asp-route-id="@item.BannerId">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Sessão de carousel  -->
+<section id="meucarrossel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+
+    <!-- Lista de Imagens - Banners -->
+    <div class="carousel-inner">
+        @{
+            string bannerAtivo = " active";
+        }
+        @foreach (var item in Model)
+        {
+            if (item.Exibir == true)
+            {
+                <!-- Imagem 1 -->
+                <div class="carousel-item @bannerAtivo" data-bs-interval="1000">
+                    @{
+                        bannerAtivo = "";
+                    }
+                    <img src="~/fotos/@item.Imagem" class="w-100 d-block">
+                    <div class="carousel-caption">
+                        <h4 class="text-light">@item.Titulo</h4>
+                        <p class="text-light">@item.Subtitulo</p>
+                        @if (item.Link != null && item.Link != "")
+                        {
+                            <a href="@item.Link" class="btn btn-primary">Saiba mais</a>
+                        }
+                    </div>
+                </div>
+            }
+        }
+
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#meucarrossel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#meucarrossel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+        <span class="visually-hidden">Próximo</span>
+    </button>
+</section>

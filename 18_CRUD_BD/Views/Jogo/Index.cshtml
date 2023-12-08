@@ -1,0 +1,69 @@
+@model IEnumerable<_18_CRUD_BD.Models.Jogo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-danger" asp-action="Create">Criar Novo</a>
+</p>
+<table class="table table-secondary">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imagem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.JogoId">Editar</a> |
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.JogoId">Detalhes</a> |
+                <a class="btn btn-danger mt-2" asp-action="Delete" asp-route-id="@item.JogoId">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-12 col-lg-3 ">
+            <div class="card " >
+                <img class="card-img-top " src="@Html.DisplayFor(modelItem => item.Imagem)" alt="Imagem de capa do card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nome)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Descricao)</p>
+                    <a href="#" class="btn btn-primary ">Saiba mais</a>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

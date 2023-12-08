@@ -1,0 +1,5 @@
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "bin\\Release\\net7.0\\publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/9b73c716-7c64-4f46-b895-d2a9ca8d8e57/resourceGroups/AL/providers/Microsoft.Web/sites/projetoaulas-Grazy"
+}
